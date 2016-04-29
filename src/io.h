@@ -144,7 +144,7 @@ const char* io_name(uint8_t addr) {
     if (addr == 0xff) {
         return "IE";
     }
-    if (addr > 0x80) {
+    if (addr >= 0x80) {
         return "HIMEM";
     }
     return io_register_names[addr];
