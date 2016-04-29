@@ -154,6 +154,8 @@ for i in range(0, 0x100):
         print '\tpc += 1;'
     elif name.startswith('RET'): # unconditional ret
         print '\tret();'
+    elif name.startswith('RST'): # reset to lower addr vector, treat as call
+        print '\tif(call_follow) jmp16(((r->raw[phy(pc)] >> 3) & 0x7) * 0x8); else pc += ' + op[1] +';'
     else: # skip any other instruction
         print '\tpc += ' + op[1] + ';'
     print '\tbreak;'
